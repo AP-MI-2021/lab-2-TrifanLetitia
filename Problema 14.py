@@ -1,5 +1,5 @@
 def get_cmmmc(list):
-# Afiseaza cel mai maic multiplu comun pentru n numere
+# Afiseaza cel mai mic multiplu comun pentru n numere
 #Input: lista de numere ( list)
 #Output: cmmmc (int)
     cmmmc=list[0]
