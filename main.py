@@ -1,33 +1,31 @@
-def get_temp(t):
+def get_temp(T,From,To):
     # Afiseaza temperatura dintr-o scara data intr-o alta scara data
     # Input: temperartura, scara data, scara ceurta
     # Output: temperatura in scara ceruta
-    grade = int(t[:-2])
-    scaraD = t[-2]
-    scaraC = t[-1]
-    if scaraD == "C" and scaraC == "K":
-        tc = grade + 273.15
+
+    if From == "C" and To == "K":
+        tc = T + 273.15
     else:
-        if scaraD == "K" and scaraC == "C":
-            tc = grade - 273.15
-        elif scaraD == "C" and scaraC == "F":
-            tc = (grade * 1.8) + 32
-        elif scaraD == "F" and scaraC == "C":
-            tc = (grade - 32) * (5 / 9)
-        elif scaraD == "K" and scaraC == "F":
-            tc = (grade - 273.15) * (9 / 5) + 32
-        elif scaraD == "F" and scaraC == "K":
-            tc = (grade - 32) * (5 / 9) + 273.15
+        if From == "K" and To == "C":
+            tc = T - 273.15
+        elif From == "C" and To == "F":
+            tc = (T * 1.8) + 32
+        elif From == "F" and To == "C":
+            tc = (T - 32) * (5 / 9)
+        elif From == "K" and To == "F":
+            tc = (T - 273.15) * (9 / 5) + 32
+        elif From == "F" and To == "K":
+            tc = (T - 32) * (5 / 9) + 273.15
     return round(tc, 2)
 
 
 def test_get_temp():
-    assert (get_temp('300KC') == 26.85)
-    assert (get_temp('25CK') == 298.15)
-    assert (get_temp('100FC') == 37.78)
-    assert (get_temp('50CF') == 122.0)
-    assert (get_temp('25KF') == -414.67)
-    assert (get_temp('30FK') == 272.04)
+    assert (get_temp(300,"K","C") == 26.85)
+    assert (get_temp(25,"C","K") == 298.15)
+    assert (get_temp(100,"F","C") == 37.78)
+    assert (get_temp(50,"C","F") == 122.0)
+    assert (get_temp(25,"K","F") == -414.67)
+    assert (get_temp(30,"F","K") == 272.04)
 
 def get_cmmmc(list):
 # Afiseaza cel mai mic multiplu comun pentru n numere
@@ -83,19 +81,27 @@ def run():
         print("1.Sa se afiseze cmmmc:")
         print("2.Sa se afiseze temperatura dintr-o scara data intr-o alta scara data")
         print("3.Sa se determine daca un numar este palindrom")
-        ans = input("Dati optiunea:")
-        if ans == "1":
+        print("4.Iesire")
+        optiune = input("Dati optiunea:")
+        if optiune == "1":
             n = int(input("Dati numarul de valori:"))
             list = []
             for i in range(0, n):
                 nr = int(input("Nr" + str(i + 1) + ":"))
                 list.append(nr)
             print(get_cmmmc(list))
-        if ans == "2":
-            t = input("t= ")
-            print(get_temp(t))
-        if ans == "3":
+        elif optiune == "2":
+            T = float(input("T: "))
+            From=input("From: ")
+            To=input("To: ")
+            print(get_temp(T,From,To))
+        elif optiune == "3":
             nr = int(input("Dati numarul:"))
             print(is_palindrome(nr))
+        elif optiune=="4":
+            ans=False
+        else:
+            print("Optiune gresita!Reincercati!")
+
 
 run()
